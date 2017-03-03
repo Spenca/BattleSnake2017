@@ -1,3 +1,38 @@
+# Decide which state we want to be in for current move
+# Previous state codes:
+#	0 = finding food
+#	1 = circling food
+def newState(foodCount, prevState, snake, foods):
+	# Get our snake's head position
+	snakeX = snake['coords'][0]
+	snakeY = snake['coords'][1]
+	# Determine which food is the closest to use
+	closeFood = closestFood(foods)
+	# Determine the distance to the closest food
+	dist = distance([snakeX, snakeY], closeFood)
+	# Get our snakes health
+	health = snake["health_points"]
+	# Get our snakes length
+	snakeLen = getSnakeLen(snake['coords'])
+	# Determine the threshold of when to move to food
+	thresh = determineThreshold(snakeLen, closeFood)
+
+	# If no food on board...
+	# If previous state was circling food and health < threshold --> eat food	
+	# If previous state was circling food and health above threshold --> continue circling
+	# If previous state was finding food and health above threshold and position is 'one' away from food --> start circling
+	# If previous state was finding food and position is more than 'one' away from food --> continue finding food
+	if foodCount == 0:
+		#choose random?
+	elif (health < thresh) and (dist == 1):
+		#move to toward food	
+	elif (prevState == 1) or (dist == 1):
+		#call to function deciding next move in circling state	
+	elif prevState == 0:
+		#call to function deciding next move in finding food state
+	else:
+		#?
+
 # Get the length of a snake
 def getSnakeLen(coords):
 	return len(coords)

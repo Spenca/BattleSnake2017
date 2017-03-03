@@ -5,6 +5,10 @@ import utils
 
 ID = 'PLACEHOLDER'
 foodCount = 0 # The number of foods on the board
+# Previous state codes:
+#   0 = finding food
+#   1 = circling food
+prevState = 0 
 
 # --------Grid data-------
 snakeHead = 0 # Head will be set as the length of the snake
@@ -63,12 +67,17 @@ def start():
 def move():
     data = bottle.request.json
 
-    init(data)
+    ourSnake, grid = init(data)
+    state = utils.newState(foodCount, prevState, ourSnake, data['food'])
+    if state = 0:
+	move = #function call to function deciding next move in finding food state
+    elif state = 1:
+	move = #function call to function deciding next move in circling food state
 
     directions = ['up', 'down', 'left', 'right']
 
     return {
-        'move': random.choice(directions),
+        'move': move,
         'taunt': 'Snek-caw!'
     }
 

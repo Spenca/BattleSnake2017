@@ -3,14 +3,20 @@ import os
 import random
 
 ID = 'PLACEHOLDER'
+foodCount = 0 # The number of foods on the board
+
+# --------Grid data-------
 snakeHead = 0 # Head will be set as the length of the snake
 snakeBody = -1
 foodPos = -2
 safePos = -3
+# ------------------------
 
-# Initialize our personal grid
+
+# Initialize our personal grid and other variables
 def init(data):
     grid = [ [0 for col in xrange(data['width'])] for row in xrange(data['height']) ]
+    foodCount = len(data['food'])
 
     for snake in data['snakes']: # Loop through all snakes on the board
         if snake['id'] == ID: # See if it's us

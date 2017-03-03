@@ -38,6 +38,7 @@ def init(data):
 
     return ourSnake, grid
 
+
 @bottle.route('/static/<path:path>')
 def static(path):
     return bottle.static_file(path, root='static/')
@@ -69,8 +70,6 @@ def move():
 
     ourSnake, grid = init(data)
     move = utils.newState(foodCount, prevState, ourSnake, data['food'])
-
-    directions = ['up', 'down', 'left', 'right']
 
     return {
         'move': move,

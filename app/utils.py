@@ -45,6 +45,7 @@ def newState(foodCount, prevState, snake, foods):
 	
 	return move
 
+
 # Get the length of a snake
 def getSnakeLen(coords):
 	return len(coords)
@@ -55,6 +56,7 @@ def distance(p, q):
     dx = abs(p[0] - q[0])
     dy = abs(p[1] - q[1])
     return dx + dy
+
 
 # Find the closest piece of food in relation to position
 def closestFood(foodList, position):
@@ -68,6 +70,7 @@ def closestFood(foodList, position):
 			closestDist = dist
 
 	return closestFood
+
 
 # Get the direction a snake is facing
 def getDirection(snake):
@@ -84,6 +87,7 @@ def getDirection(snake):
 		return 'down'
 	elif dy == -1:
 		return 'up'
+
 
 # Get the next cell coordinates based on a snake's direction
 def getNextCell(snake):
@@ -103,9 +107,9 @@ def getNextCell(snake):
 	elif direction == 'up':
 		return [x1, y1 - 1]
 
+
 def checkCollision(snake, grid, move):
 	# under construction
-	print 'we need a way to pass in the move that the snake is trying to make'
+	# move = "up" | "left" | "down" | "right"
 
 	currentPos = snake['coords'][0]
-

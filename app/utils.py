@@ -25,7 +25,7 @@ def newState(foodCount, prevState, snake, foods):
 	# If previous state was finding food and position is more than 'one' away from food --> continue finding food
 	if foodCount == 0:
 		#choose random?
-		#move =
+		move = getDirection(snake) #TODO: replace w/ logic
 	elif (health <= thresh) and (dist == 1):
 		#move to toward food
 		if snakeHead[0] > closeFood[0]:
@@ -41,7 +41,7 @@ def newState(foodCount, prevState, snake, foods):
 		move = getDefMove(snake)
 	else: #prevState == 0:
 		#call to function deciding next move in finding food state
-		#move = 
+		move = getDirection(snake) #TODO: replace w/ logic
 	
 	return move
 

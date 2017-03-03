@@ -89,7 +89,7 @@ def getDirection(snake):
 
 def getSeekMove(snake):
     move = None # Null checking?
-    snakeHead = snek['coords'][0]
+    snakeHead = snake['coords'][0]
     x = snakeHead[0]
     y = snakeHead[1]
     direction = getDirection(snake)

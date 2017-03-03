@@ -1,7 +1,53 @@
+# Decide which state we want to be in for current move
+# Previous state codes:
+#	0 = finding food
+#	1 = circling food
+def newState(foodCount, prevState, snake, foods):
+	# Get our snake's head position
+	snakeHead = snake['coords'][0]
+	# Determine which food is the closest to use
+	closeFood = closestFood(foods, snakeHead)
+	# Determine the distance to the closest food
+	dist = distance(snakeHead, closeFood)
+	# Get our snakes health
+	health = snake["health_points"]
+	# Get our snakes length
+	snakeLen = getSnakeLen(snake['coords'])
+	# Determine what distance away from the food we will circle at
+	#cirDist = ?
+	# Determine the threshold of when to move to food
+	thresh = dist+10
+
+	# If no food on board...
+	# If previous state was circling food and health < threshold --> eat food	
+	# If previous state was circling food and health above threshold --> continue circling
+	# If previous state was finding food and health above threshold and position is 'one' away from food --> start circling
+	# If previous state was finding food and position is more than 'one' away from food --> continue finding food
+	if foodCount == 0:
+		#choose random?
+		#move =
+	elif (health <= thresh) and (dist == 1):
+		#move to toward food
+		if snakeHead[0] > closeFood[0]:
+			move = 'left'
+		elif snakeHead[0] < closeFood[0]:
+			move = 'right'
+		elif snakeHead[1] > closeFood[1]:
+			move = 'up'
+		elif snakeHead[1] < closeFood[1]:
+			move = 'down'
+	elif (prevState == 1  or dist == cirDist) and (health > threshold):
+		#call to function deciding next move in circling state
+		#move =
+	else: #prevState == 0:
+		#call to function deciding next move in finding food state
+		#move = 
+	
+	return move
+
 # Get the length of a snake
 def getSnakeLen(coords):
 	return len(coords)
-
 
 # Get the distance between two points
 def distance(p, q):
@@ -71,3 +117,9 @@ def getDefMove(snake):
 			return 'right'
 		else:
 			return 'up'
+
+def checkCollision(snake, grid, move):
+	# under construction
+	# move = "up" | "left" | "down" | "right"
+
+	currentPos = snake['coords'][0]

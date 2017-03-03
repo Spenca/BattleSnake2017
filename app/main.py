@@ -1,6 +1,7 @@
 import bottle
 import os
 import random
+import utils
 
 ID = 'PLACEHOLDER'
 foodCount = 0 # The number of foods on the board
@@ -21,6 +22,10 @@ def init(data):
     for snake in data['snakes']: # Loop through all snakes on the board
         if snake['id'] == ID: # See if it's us
             ourSnake = snake
+
+        headCoord = snake['coords'][0] # head of snake
+        grid[headCoord[0]][headCoord[1]] = utils.getSnakeLen(snake['coords']) # set grid pos of head to be length of snake
+
         for coord in snake['coords']: # Get the coordinates of the snake
             grid[coord[0]][coord[1]] = snakePos # Set grid val to snake
 

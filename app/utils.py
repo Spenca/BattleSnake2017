@@ -4,18 +4,19 @@
 #	1 = circling food
 def newState(foodCount, prevState, snake, foods):
 	# Get our snake's head position
-	snakeX = snake['coords'][0]
-	snakeY = snake['coords'][1]
+	snakeHead = snake['coords'][0]
 	# Determine which food is the closest to use
-	closeFood = closestFood(foods)
+	closeFood = closestFood(foods, snakeHead)
 	# Determine the distance to the closest food
-	dist = distance([snakeX, snakeY], closeFood)
+	dist = distance(snakeHead, closeFood)
 	# Get our snakes health
 	health = snake["health_points"]
 	# Get our snakes length
 	snakeLen = getSnakeLen(snake['coords'])
+	# Determine what distance away from the food we will circle at
+	#cirDist = ?
 	# Determine the threshold of when to move to food
-	thresh = determineThreshold(snakeLen, closeFood)
+	thresh = dist+10
 
 	# If no food on board...
 	# If previous state was circling food and health < threshold --> eat food	
@@ -24,14 +25,25 @@ def newState(foodCount, prevState, snake, foods):
 	# If previous state was finding food and position is more than 'one' away from food --> continue finding food
 	if foodCount == 0:
 		#choose random?
-	elif (health < thresh) and (dist == 1):
-		#move to toward food	
-	elif (prevState == 1) or (dist == 1):
-		#call to function deciding next move in circling state	
-	elif prevState == 0:
+		#move =
+	elif (health <= thresh) and (dist == 1):
+		#move to toward food
+		if snakeHead[0] > closeFood[0]:
+			move = 'left'
+		elif snakeHead[0] < closeFood[0]:
+			move = 'right'
+		elif snakeHead[1] > closeFood[1]:
+			move = 'up'
+		elif snakeHead[1] < closeFood[1]:
+			move = 'down'
+	elif (prevState == 1  or dist == cirDist) and (health > threshold):
+		#call to function deciding next move in circling state
+		#move =
+	else: #prevState == 0:
 		#call to function deciding next move in finding food state
-	else:
-		#?
+		#move = 
+	
+	return move
 
 # Get the length of a snake
 def getSnakeLen(coords):
@@ -96,3 +108,4 @@ def checkCollision(snake, grid, move):
 	print 'we need a way to pass in the move that the snake is trying to make'
 
 	currentPos = snake['coords'][0]
+

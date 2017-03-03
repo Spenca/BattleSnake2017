@@ -68,11 +68,7 @@ def move():
     data = bottle.request.json
 
     ourSnake, grid = init(data)
-    state = utils.newState(foodCount, prevState, ourSnake, data['food'])
-    if state = 0:
-	move = #function call to function deciding next move in finding food state
-    elif state = 1:
-	move = #function call to function deciding next move in circling food state
+    move = utils.newState(foodCount, prevState, ourSnake, data['food'])
 
     directions = ['up', 'down', 'left', 'right']
 

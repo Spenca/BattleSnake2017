@@ -56,6 +56,8 @@ def getNextCell(snake):
 	elif direction == 'up':
 		return [x1, y1 - 1]
 
-def handleCollision:
+def checkCollision(snake, grid, move):
+	# implementation needed
+	print 'we need a way to pass in the move that the snake is trying to make'
 
 

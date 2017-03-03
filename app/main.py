@@ -5,6 +5,10 @@ import utils
 
 ID = 'PLACEHOLDER'
 foodCount = 0 # The number of foods on the board
+# Previous state codes:
+#   0 = finding food
+#   1 = circling food
+prevState = 0 
 
 # --------Grid data-------
 snakeHead = 0 # Head will be set as the length of the snake
@@ -19,9 +23,9 @@ def init(data):
     grid = [ [0 for col in xrange(data['width'])] for row in xrange(data['height']) ]
     foodCount = len(data['food'])
 
+    ourSnake = snake['you'] # See if it's us
+
     for snake in data['snakes']: # Loop through all snakes on the board
-        if snake['id'] == ID: # See if it's us
-            ourSnake = snake
 
         headCoord = snake['coords'][0] # head of snake
         grid[headCoord[0]][headCoord[1]] = utils.getSnakeLen(snake['coords']) # set grid pos of head to be length of snake
@@ -33,6 +37,7 @@ def init(data):
         grid[food[0]][food[1]] = foodPos
 
     return ourSnake, grid
+
 
 @bottle.route('/static/<path:path>')
 def static(path):
@@ -63,10 +68,11 @@ def start():
 def move():
     data = bottle.request.json
 
-    directions = ['up', 'down', 'left', 'right']
+    ourSnake, grid = init(data)
+    move = utils.newState(foodCount, prevState, ourSnake, data['food'])
 
     return {
-        'move': random.choice(directions),
+        'move': move,
         'taunt': 'Snek-caw!'
     }
 

@@ -89,9 +89,9 @@ def getDirection(snake):
 
 def getSeekMove(snake):
     move = None # Null checking?
-    head = snek['coords'][0]
-    x = head[0]
-    y = head[1]
+    snakeHead = snek['coords'][0]
+    x = snakeHead[0]
+    y = snakeHead[1]
     direction = getDirection(snake)
     closeFood = closestFood(foods, snakeHead)
 	# Determine the distance to the closest food

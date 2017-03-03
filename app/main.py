@@ -2,6 +2,7 @@ import bottle
 import os
 import random
 
+ID = 'PLACEHOLDER'
 snakePos = 1
 foodPos = 2
 safePos = 3

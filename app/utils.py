@@ -38,7 +38,7 @@ def newState(foodCount, prevState, snake, foods):
 			move = 'down'
 	elif (prevState == 1  or dist == cirDist) and (health > threshold):
 		#call to function deciding next move in circling state
-		#move =
+		move = getDefMove(snake)
 	else: #prevState == 0:
 		#call to function deciding next move in finding food state
 		#move = 

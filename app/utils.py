@@ -43,6 +43,7 @@ def newState(foodCount, prevState, snake, foods):
 		#call to function deciding next move in finding food state
 		#move = getDirection(snake) #TODO: replace w/ logic
 		move = getSeekMove(snake)
+		move = getOffMove(snakeHead, closeFood)
 	
 	return move
 
@@ -145,8 +146,21 @@ def getDefMove(snake):
 		else:
 			return 'up'
 
+#TODO: replace w/ better logic
+def getOffMove(snakeHead, closeFood):
+	if snakeHead[0] > closeFood[0]:
+		move = 'left'
+	elif snakeHead[0] < closeFood[0]:
+		move = 'right'
+	elif snakeHead[1] > closeFood[1]:
+		move = 'up'
+	elif snakeHead[1] < closeFood[1]:
+		move = 'down'
+	return move
+
 def checkCollision(snake, grid, move):
 	# under construction
 	# move = "up" | "left" | "down" | "right"
 
 	currentPos = snake['coords'][0]
+

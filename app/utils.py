@@ -1,3 +1,4 @@
+# test github integration
 # Get the length of a snake
 def getSnakeLen(coords):
 	return len(coords)

@@ -38,22 +38,36 @@ def getDirection(snake):
 	elif dy == -1:
 		return 'up'
 
-# Get the next cell coordinates based on a snake's direction
-def getNextCell(snake):
-	x1 = snake['coords'][0][0]
-	y1 = snake['coords'][0][1]
-	x2 = snake['coords'][1][0]
-	y2 = snake['coords'][1][1]
+# Get the side length of the min. incomplete square that can be formed by a snake of length n
+def getSqSideLen(n):
+	return 1 + ((n+4)/4)
 
+# Get the move required to keep the snake in a defensive square formation around a food item
+def getDefMove(snake):
+	x = snake['coords'][0][0]
+	y = snake['coords'][0][1]
 	direction = getDirection(snake)
+	
+	squareDim = getSqSideLen(getSnakeLen(snake['coords']))	
+	pt = snake['coords'][squareDim - 1]
 
 	if direction == 'right':
-		return [x1 + 1, y1]
+		if pt == [x - squareDim + 1, y]:
+			return 'down'
+		else:
+			return 'right'
 	elif direction == 'left':
-		return [x1 - 1, y1]
+		if pt == [x + squareDim - 1, y]:
+			return 'up'
+		else:
+			return 'left'
 	elif direction == 'down':
-		return [x1, y1 + 1]
+		if pt == [x, y - squareDim + 1]:
+			return 'left'
+		else:
+			return 'down'
 	elif direction == 'up':
-		return [x1, y1 - 1]
-
-
+		if pt == [x, y + squareDim - 1]:
+			return 'right'
+		else:
+			return 'up'

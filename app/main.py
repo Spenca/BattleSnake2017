@@ -3,9 +3,10 @@ import os
 import random
 
 ID = 'PLACEHOLDER'
-snakePos = 1
-foodPos = 2
-safePos = 3
+snakeHead = 0 # Head will be set as the length of the snake
+snakeBody = -1
+foodPos = -2
+safePos = -3
 
 # Initialize our personal grid
 def init(data):

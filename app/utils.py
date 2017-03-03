@@ -43,7 +43,7 @@ def newState(foodCount, prevState, snake, foods):
 		#call to function deciding next move in finding food state
 		#move = getDirection(snake) #TODO: replace w/ logic
 		move = getSeekMove(snake)
-		move = getOffMove(snakeHead, closeFood)
+		#move = getOffMove(snakeHead, closeFood)
 	
 	return move
 

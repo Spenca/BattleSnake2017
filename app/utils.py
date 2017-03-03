@@ -1,4 +1,3 @@
-# test github integration
 # Get the length of a snake
 def getSnakeLen(coords):
 	return len(coords)
@@ -56,5 +55,7 @@ def getNextCell(snake):
 		return [x1, y1 + 1]
 	elif direction == 'up':
 		return [x1, y1 - 1]
+
+def handleCollision:
 
 

@@ -19,9 +19,9 @@ def init(data):
     grid = [ [0 for col in xrange(data['width'])] for row in xrange(data['height']) ]
     foodCount = len(data['food'])
 
+    ourSnake = snake['you'] # See if it's us
+
     for snake in data['snakes']: # Loop through all snakes on the board
-        if snake['id'] == ID: # See if it's us
-            ourSnake = snake
 
         headCoord = snake['coords'][0] # head of snake
         grid[headCoord[0]][headCoord[1]] = utils.getSnakeLen(snake['coords']) # set grid pos of head to be length of snake

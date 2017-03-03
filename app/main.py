@@ -46,7 +46,7 @@ def start():
         'color': '#00FF00',
         'taunt': '{} ({}x{})'.format(game_id, board_width, board_height),
         'head_url': head_url,
-        'name': 'battlesnake-python'
+        'name': 'Vulture Snake'
     }
 
 
@@ -59,7 +59,7 @@ def move():
 
     return {
         'move': random.choice(directions),
-        'taunt': 'battlesnake-python!'
+        'taunt': 'Snek-caw!'
     }
 
 

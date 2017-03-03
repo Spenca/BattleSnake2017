@@ -57,7 +57,7 @@ def getNextCell(snake):
 		return [x1, y1 - 1]
 
 def checkCollision(snake, grid, move):
-	# implementation needed
+	# under construction
 	print 'we need a way to pass in the move that the snake is trying to make'
 
-
+	currentPos = snake['coords'][0]

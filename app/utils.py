@@ -1,13 +1,15 @@
 import random
 
-
 state = 0
+sqCorners = [[0,0], [0,0], [0,0], [0,0]]
+
 # Decide which state we want to be in for current move
 # Previous state codes:
 #	0 = finding food
 #	1 = circling food
 def newState(foodCount, snake, data):
     global state
+    global sqCorners
     foods = data['food']
 	# Get our snake's head position
     snakeHead = snake['coords'][0]

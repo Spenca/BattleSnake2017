@@ -102,7 +102,7 @@ def getSeekMove(snake, data):
 		move = 'down'
 
     if checkCollision(snake, data, move) == True:
-		move = desperation(snake, data)
+		move = desperation(snake, data, move)
     		
     return move
 

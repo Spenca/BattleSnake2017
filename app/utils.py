@@ -150,18 +150,18 @@ def checkCollision(snake, data, move):
 	currentPos = snake['coords'][0]
 
 	direction = {'up': -1, 'down': 1, 'right': 1, 'left': -1}
-  choice = direction[move]
+    choice = direction[move]
 	
 	occupiedPositions = snake['coords'][1:] # snake body
 
-	for s in data['snakes']: # other snakes
+    for s in data['snakes']: # other snakes
   	for c in s['coords']:
     	occupiedPositions.append(c)
 
-  for s in range(data['width']): # north and south walls
-  	occupiedPositions.append([s, -1])
-  	occupiedPositions.append([s, data['height']])
+	for s in range(data['width']): # north and south walls
+		occupiedPositions.append([s, -1])
+		occupiedPositions.append([s, data['height']])
   
-  for s in range(data['height']): # east and west walls
-  	occupiedPositions.append([-1, s])
-  	occupiedPositions.append([data['width'], s])
+  	for s in range(data['height']): # east and west walls
+  		occupiedPositions.append([-1, s])
+  		occupiedPositions.append([data['width'], s])

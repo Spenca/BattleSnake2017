@@ -70,7 +70,7 @@ def move():
 
     ourSnake, grid, foodCount = init(data)
 
-    #move = utils.newState(foodCount, prevState, ourSnake, data['food'])
+    #move, prevState = utils.newState(foodCount, prevState, ourSnake, data['food'])
     move = utils.getSeekMove(ourSnake, data['food']) # TODO: Fix other states and cases
     
     return {

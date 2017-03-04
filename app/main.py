@@ -76,7 +76,7 @@ def move():
     #move = utils.newState(foodCount, prevState, ourSnake, data['food'])
 
     return {
-        'move': 'move',
+        'move': 'left',
         'taunt': 'Snek-caw!'
     }
 

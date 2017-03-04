@@ -155,9 +155,27 @@ def getOffMove(snakeHead, closeFood):
 		move = 'down'
 	return move
 
-def checkCollision(snake, grid, move):
+def checkCollision(snake, data, move):
 	# under construction
 	# move = "up" | "left" | "down" | "right"
+	# move translated to coordinates = [0, -1] | [-1, 0] | [0, 1] | [1, 0]
+	# return true or false
 
 	currentPos = snake['coords'][0]
 
+	direction = {'up': -1, 'down': 1, 'right': 1, 'left': -1}
+  choice = direction[move]
+	
+	occupiedPositions = snake['coords'][1:] # snake body
+
+	for s in data['snakes']: # other snakes
+  	for c in s['coords']:
+    	occupiedPositions.append(c)
+
+  for s in range(data['width']): # north and south walls
+  	occupiedPositions.append([s, -1])
+  	occupiedPositions.append([s, data['height']])
+  
+  for s in range(data['height']): # east and west walls
+  	occupiedPositions.append([-1, s])
+  	occupiedPositions.append([data['width'], s])

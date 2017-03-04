@@ -68,7 +68,7 @@ def start():
 def move():
     data = bottle.request.json
 
-   # ourSnake, grid, foodCount = init(data)
+    ourSnake, grid, foodCount = init(data)
 
     #move = utils.newState(foodCount, prevState, ourSnake, data['food'])
     move = utils.getSeekMove(ourSnake, data['food']) # TODO: Fix other states and cases

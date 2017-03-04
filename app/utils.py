@@ -1,5 +1,4 @@
 import random
-moves = ['up', 'down', 'left', 'right']
 
 # Decide which state we want to be in for current move
 # Previous state codes:
@@ -154,7 +153,7 @@ def getOffMove(snakeHead, closeFood):
 
 # Return a collision free move
 def desperation(snake, data, move):
-	opts = moves
+	opts = ['up', 'down', 'right', 'left']
 	opts.remove(move)
 	for item in opts:
 		if checkCollision(snake, data, item) == True:

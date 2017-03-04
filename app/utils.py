@@ -26,16 +26,7 @@ def newState(foodCount, prevState, snake, foods):
 	if foodCount == 0:
 		#choose random?
 		move = getDirection(snake) #TODO: replace w/ logic
-	elif (health <= thresh) and (dist == 1):
-		#move to toward food
-		if snakeHead[0] > closeFood[0]:
-			move = 'left'
-		elif snakeHead[0] < closeFood[0]:
-			move = 'right'
-		elif snakeHead[1] > closeFood[1]:
-			move = 'up'
-		elif snakeHead[1] < closeFood[1]:
-			move = 'down'
+		
 	elif (prevState == 1  or dist == cirDist) and (health > threshold):
 		#call to function deciding next move in circling state
 		move = getDefMove(snake)

@@ -169,8 +169,6 @@ def checkCollision(snake, data, move):
 	# return true or false
 
 	currentPos = snake['coords'][0]
-
-	direction = {'up': -1, 'down': 1, 'right': 1, 'left': -1}
 	
 	if move == 'up':
 		choice = [currentPos[0], currentPos[1] - 1]

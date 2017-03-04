@@ -10,6 +10,7 @@ sqCorners = [[0,0], [0,0], [0,0], [0,0]]
 def newState(foodCount, snake, data):
     global state
     global sqCorners
+    print sqCorners
     foods = data['food']
 	# Get our snake's head position
     snakeHead = snake['coords'][0]

@@ -153,13 +153,16 @@ def getOffMove(snakeHead, closeFood):
 	return move
 
 # Return a collision free move
-def desperation(snake, data):
-	move = random.choice(moves)
+def desperation(snake, data, move):
+	opts = moves
+	opts.remove(move)
+	for item in opts:
+		if checkCollision(snake, data, item) == True:
+			opts.remove(item)
+		else:
+			return item
 
-	while checkCollision(snake, data, move) == True:
-		move = random.choice(moves)
-
-	return move
+	#return 'up'
 
 
 

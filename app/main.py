@@ -28,9 +28,6 @@ def init(data):
         if snake['id'] == data['you']:
             ourSnake = snake
 
-        if snake['id'] == data['you']:
-            ourSnake = snake
-
         headCoord = snake['coords'][0] # head of snake
         grid[headCoord[0]][headCoord[1]] = utils.getSnakeLen(snake['coords']) # set grid pos of head to be length of snake
 

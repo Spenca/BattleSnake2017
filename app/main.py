@@ -61,7 +61,7 @@ def start():
         'color': '#000000',
         'taunt': '{} ({}x{})'.format(game_id, board_width, board_height),
         'head_url': head_url,
-        'name': 'Vulture Snake'
+        'name': 'Vulture Snake',
         'head_type': 'smile',
     	'tail_type': 'pixel'
     }

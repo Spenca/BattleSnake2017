@@ -85,30 +85,33 @@ def getDirection(snake):
 #TODO: Fix case where snake turns into istelf
 #TODO: Add transition to defense state     
 def getSeekMove(snake, data):
-    move = None # Null checking?
-    snakeHead = snake['coords'][0]
-    foodList = data['food']
-    x = snakeHead[0]
-    y = snakeHead[1]
+	move = None # Null checking?
+	snakeHead = snake['coords'][0]
+	foodList = data['food']
+	x = snakeHead[0]
+	y = snakeHead[1]
 
-    #direction = getDirection(snake)
-    closeFood = closestFood(foodList, snakeHead)
+	#direction = getDirection(snake)
+	closeFood = closestFood(foodList, snakeHead)
 	# Determine the distance to the closest food
-    #dist = distance(snakeHead, closeFood)
+	#dist = distance(snakeHead, closeFood)
 
-    if snakeHead[0] > closeFood[0]:
+	if snakeHead[0] > closeFood[0]:
 		move = 'left'
-    elif snakeHead[0] < closeFood[0]:
+	elif snakeHead[0] < closeFood[0]:
 		move = 'right'
-    elif snakeHead[1] > closeFood[1]:
+	elif snakeHead[1] > closeFood[1]:
 		move = 'up'
-    elif snakeHead[1] < closeFood[1]:
+	elif snakeHead[1] < closeFood[1]:
 		move = 'down'
 
-    if checkCollision(snake, data, move) == True:
+	
+
+	if checkCollision(snake, data, move) == True:
 		move = desperation(snake, data, move)
-    		
-    return move
+	
+	print "I am moving: " + move
+	return move
 
 # Get the side length of the min. incomplete square that can be formed by a snake of length n
 def getSqSideLen(n):
@@ -206,9 +209,9 @@ def checkCollision(snake, data, move):
 	if move == 'left':
 		choice = [currentPos[0] - 1, currentPos[1]]
 	
-	occupiedPositions = snake['coords'][1:] # snake body
+	occupiedPositions = []
 
-	for s in data['snakes']: # other snakes
+	for s in data['snakes']: # all snakes
   		for c in s['coords']:
 			occupiedPositions.append(c)
 
@@ -220,7 +223,7 @@ def checkCollision(snake, data, move):
   		occupiedPositions.append([-1, s])
   		occupiedPositions.append([data['width'], s])
 
-  	if currentPos in occupiedPositions:
+  	if choice in occupiedPositions:
   		return True
   	else:
   		return False

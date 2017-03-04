@@ -23,15 +23,16 @@ def init(data):
     grid = [ [0 for col in xrange(data['width'])] for row in xrange(data['height']) ]
     foodCount = len(data['food'])
 
-    ourSnake = snake['you'] # See if it's us
-
     for snake in data['snakes']: # Loop through all snakes on the board
+
+        if snake['id'] == data['you']:
+            ourSnake = snake
 
         headCoord = snake['coords'][0] # head of snake
         grid[headCoord[0]][headCoord[1]] = utils.getSnakeLen(snake['coords']) # set grid pos of head to be length of snake
 
         for coord in snake['coords']: # Get the coordinates of the snake
-            grid[coord[0]][coord[1]] = snakePos # Set grid val to snake
+            grid[coord[0]][coord[1]] = snakeBody # Set grid val to snake
 
     for food in data['food']: # Loop through all food on the board
         grid[food[0]][food[1]] = foodPos
@@ -62,7 +63,6 @@ def start():
         'head_url': head_url,
         'name': 'Vulture Snake'
     }
-
 
 @bottle.post('/move')
 def move():

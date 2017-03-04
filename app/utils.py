@@ -87,30 +87,25 @@ def getDirection(snake):
 		return 'up'
 	return
 
-def getSeekMove(snake):
+def getSeekMove(snake, foodList):
     move = None # Null checking?
     snakeHead = snake['coords'][0]
     x = snakeHead[0]
     y = snakeHead[1]
-    direction = getDirection(snake)
+    #direction = getDirection(snake)
     closeFood = closestFood(foods, snakeHead)
 	# Determine the distance to the closest food
-    dist = distance(snakeHead, closeFood)
+    #dist = distance(snakeHead, closeFood)
 
-    if foodCount == 0:
-    		#choose random?
-		move = getDirection(snake) #TODO: replace w/ logic
-    else:
-		#move to toward food
-    	if snakeHead[0] > closeFood[0]:
-			move = 'left'
-     	elif snakeHead[0] < closeFood[0]:
-			move = 'right'
-        elif snakeHead[1] > closeFood[1]:
-			move = 'up'
-        elif snakeHead[1] < closeFood[1]:
-			move = 'down'
-	return move
+    if snakeHead[0] > closeFood[0]:
+		move = 'left'
+    elif snakeHead[0] < closeFood[0]:
+		move = 'right'
+    elif snakeHead[1] > closeFood[1]:
+		move = 'up'
+    elif snakeHead[1] < closeFood[1]:
+		move = 'down'
+    return move
 
 # Get the side length of the min. incomplete square that can be formed by a snake of length n
 def getSqSideLen(n):

@@ -25,13 +25,15 @@ def newState(foodCount, prevState, snake, foods):
 	if (prevState == 1  or dist == 1) and (health > threshold):
 		#call to function deciding next move in circling state
 		move = getDefMove(snake)
+		state = 1
 	else: #prevState == 0:
 		#call to function deciding next move in finding food state
 		#move = getDirection(snake) #TODO: replace w/ logic
 		move = getSeekMove(snake)
+		state = 0
 		#move = getOffMove(snakeHead, closeFood)
 	
-	return move
+	return move, state
 
 # Get the length of a snake
 def getSnakeLen(coords):

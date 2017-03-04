@@ -31,7 +31,7 @@ def newState(foodCount, snake, data):
 
     if state == 0 and dist == 1 and health > threshold:
 		#call to function defining square formation and deciding next move to enter circling state
-		sqCorners, move = getSqCorners(snake)
+		sqCorners, move = getSqCorners(snake, closeFood)
 		state = 1
     elif state == 1 and health > threshold:
 		#call to function deciding next move in circling state
@@ -120,16 +120,15 @@ def getSqSideLen(n):
 	return 1 + ((n+4)/4)
 
 # Get an array of length 4 of the coordinates that define the defensive square: [top-left, top-right, bottom-right, bottom-left]
-def getSqCorners(snake):
+def getSqCorners(snake, closeFood):
 	squareDim = getSqSideLen(getSnakeLen(snake['coords']))
 
 	sX = snake['coords'][0][0]
 	sY = snake['coords'][0][1]
 
 	snakeHead = snake['coords'][0]
-	closeFood = closestFood(foods, snakeHead)
 
-	dx = closeFlood[0] - snakeHead[0]
+	dx = closeFood[0] - snakeHead[0]
 	dy = closeFood[1] - snakeHead[1]
 
 	if dx == 1:

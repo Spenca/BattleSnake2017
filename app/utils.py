@@ -101,7 +101,7 @@ def getSeekMove(snake, data):
     elif snakeHead[1] < closeFood[1]:
 		move = 'down'
 
-    if checkCollision(snake, data, move) is True:
+    if checkCollision(snake, data, move) == True:
 		move = desperation(snake, data)
     		
     return move

@@ -18,16 +18,11 @@ def newState(foodCount, prevState, snake, foods):
 	# Determine the threshold of when to move to food
 	thresh = cirDist+10
 
-	# If no food on board...
 	# If previous state was circling food and health < threshold --> eat food	
 	# If previous state was circling food and health above threshold --> continue circling
 	# If previous state was finding food and health above threshold and position is 'one' away from food --> start circling
 	# If previous state was finding food and position is more than 'one' away from food --> continue finding food
-	if foodCount == 0:
-		#choose random?
-		move = getDirection(snake) #TODO: replace w/ logic
-		
-	elif (prevState == 1  or dist == 1) and (health > threshold):
+	if (prevState == 1  or dist == 1) and (health > threshold):
 		#call to function deciding next move in circling state
 		move = getDefMove(snake)
 	else: #prevState == 0:

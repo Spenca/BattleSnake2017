@@ -24,9 +24,14 @@ def newState(foodCount, prevState, snake, foods):
 	# If previous state was circling food and health above threshold --> continue circling
 	# If previous state was finding food and health above threshold and position is 'one' away from food --> start circling
 	# If previous state was finding food and position is more than 'one' away from food --> continue finding food
-	if (prevState == 1  or dist == 1) and (health > threshold):
+
+	if prevState == 0 and dist == 1 and health > threshold:
+		#call to function defining square formation and deciding next move to enter circling state
+		sqCorners, move = getSqCorners(snake)
+		state = 1
+	elif prevState == 1 and health > threshold:
 		#call to function deciding next move in circling state
-		move = getDefMove(snake)
+		move = getDefMove(snake, sqCorners)
 		state = 1
 	else: #prevState == 0:
 		#call to function deciding next move in finding food state
@@ -109,35 +114,54 @@ def getSeekMove(snake, data):
 def getSqSideLen(n):
 	return 1 + ((n+4)/4)
 
-# Get the move required to keep the snake in a defensive square formation around a food item
-def getDefMove(snake):
-	x = snake['coords'][0][0]
-	y = snake['coords'][0][1]
-	direction = getDirection(snake)
-	
-	squareDim = getSqSideLen(getSnakeLen(snake['coords']))	
-	pt = snake['coords'][squareDim - 1]
+# Get an array of length 4 of the coordinates that define the defensive square: [top-left, top-right, bottom-right, bottom-left]
+def getSqCorners(snake):
+	squareDim = getSqSideLen(getSnakeLen(snake['coords']))
 
+	sX = snake['coords'][0][0]
+	sY = snake['coords'][0][1]
+
+	snakeHead = snake['coords'][0]
+	closeFood = closestFood(foods, snakeHead)
+
+	dx = closeFlood[0] - snakeHead[0]
+	dy = closeFood[1] - snakeHead[1]
+
+	if dx == 1:
+		# food is right of head, closest corner is bottom left
+		return [[sX,sY-squareDim+2], [sX+squareDim-1,sY-squareDim+2], [sX+squareDim-1, sY+1], [sX, sY+1]], 'up'
+	elif dx == -1:
+		# food is left of head, closest corner is top right
+		return [[sX-squareDim+1, sY-1], [sX, sY-1], [sX, sY+squareDim-2], [sX-squareDim+1, sY+squareDim-2]], 'down'
+	elif dy == 1:
+		# food is below head, closest corner is top left
+		return [[sX-1, sY], [sX+squareDim-2, sY], [sX+squareDim-2, sY+squareDim-1], [sX-1, sY+squareDim-1]], 'right'
+	elif dy == -1:
+		# food is above head, closest corner is bottom right
+		return [[sX-squareDim+2, sY-squareDim+1], [sX+1, sY-squareDim+1], [sX+1, sY], [sX-squareDim+2, sY]], 'left'
+
+def turnRight(direction):
 	if direction == 'right':
-		if pt == [x - squareDim + 1, y]:
-			return 'down'
-		else:
-			return 'right'
+		return 'down'
 	elif direction == 'left':
-		if pt == [x + squareDim - 1, y]:
-			return 'up'
-		else:
-			return 'left'
-	elif direction == 'down':
-		if pt == [x, y - squareDim + 1]:
-			return 'left'
-		else:
-			return 'down'
+		return 'up'
 	elif direction == 'up':
-		if pt == [x, y + squareDim - 1]:
-			return 'right'
-		else:
-			return 'up'
+		return 'right'
+	elif direction == 'down':
+		return 'left'
+
+# Get the move required to keep the snake in a defensive square formation around a food item
+def getDefMove(snake, sqCorners):
+
+	snakeHead = snake['coords'][0]
+	direction = getDirection(snake)
+
+	if snakeHead in sqCorners:
+		return turnRight(direction)
+	else:
+		return direction
+
+
 
 #TODO: replace w/ better logic
 def getOffMove(snakeHead, closeFood):

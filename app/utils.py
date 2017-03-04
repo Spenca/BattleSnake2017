@@ -93,7 +93,7 @@ def getSeekMove(snake, foodList):
     x = snakeHead[0]
     y = snakeHead[1]
     #direction = getDirection(snake)
-    closeFood = closestFood(foods, snakeHead)
+    closeFood = closestFood(foodList, snakeHead)
 	# Determine the distance to the closest food
     #dist = distance(snakeHead, closeFood)
 

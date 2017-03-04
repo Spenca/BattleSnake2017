@@ -4,7 +4,7 @@ import random
 import utils
 
 ID = 'PLACEHOLDER'
-foodCount = 0 # The number of foods on the board
+#foodCount = 0 # The number of foods on the board
 # Previous state codes:
 #   0 = finding food
 #   1 = circling food

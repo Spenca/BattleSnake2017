@@ -1,3 +1,6 @@
+import random
+moves = ['up', 'down', 'left', 'right']
+
 # Decide which state we want to be in for current move
 # Previous state codes:
 #	0 = finding food
@@ -77,11 +80,13 @@ def getDirection(snake):
 
 #TODO: Fix case where snake turns into istelf
 #TODO: Add transition to defense state     
-def getSeekMove(snake, foodList):
+def getSeekMove(snake, data):
     move = None # Null checking?
     snakeHead = snake['coords'][0]
+    foodList = data['food']
     x = snakeHead[0]
     y = snakeHead[1]
+
     #direction = getDirection(snake)
     closeFood = closestFood(foodList, snakeHead)
 	# Determine the distance to the closest food
@@ -95,6 +100,10 @@ def getSeekMove(snake, foodList):
 		move = 'up'
     elif snakeHead[1] < closeFood[1]:
 		move = 'down'
+
+    if checkCollision(snake, data, move) is True:
+		move = desperation(snake, data)
+    		
     return move
 
 # Get the side length of the min. incomplete square that can be formed by a snake of length n
@@ -142,6 +151,17 @@ def getOffMove(snakeHead, closeFood):
 	elif snakeHead[1] < closeFood[1]:
 		move = 'down'
 	return move
+
+# Return a collision free move
+def desperation(snake, data):
+	move = random.choice(moves)
+
+	while checkCollision(snake, data, move) == True:
+		move = random.choice(moves)
+
+	return move
+
+
 
 def checkCollision(snake, data, move):
 	# under construction

@@ -105,8 +105,6 @@ def getSeekMove(snake, data):
 	elif snakeHead[1] < closeFood[1]:
 		move = 'down'
 
-	
-
 	if checkCollision(snake, data, move) == True:
 		move = desperation(snake, data, move)
 	
@@ -181,13 +179,22 @@ def getOffMove(snakeHead, closeFood):
 # Return a collision free move
 def desperation(snake, data, move):
 	opts = ['up', 'down', 'right', 'left']
+	print "1: " + str(opts)
 	opts.remove(move)
+	print "2: " + str(opts)
+	bad = []
 	for item in opts:
 		if checkCollision(snake, data, item) == True:
-			opts.remove(item)
+			bad.append(item)
+	remove_common_elements(opts, bad)
 	if len(opts) > 0:
 		return random.choice(opts)
 	return 'up'
+
+def remove_common_elements(a, b):
+	for e in a[:]:
+		if e in b:
+			a.remove(e)
 
 def checkCollision(snake, data, move):
 	# under construction

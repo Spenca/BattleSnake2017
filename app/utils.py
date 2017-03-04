@@ -87,6 +87,8 @@ def getDirection(snake):
 		return 'up'
 	return
 
+#TODO: Fix case where snake turns into istelf
+#TODO: Add transition to defense state     
 def getSeekMove(snake, foodList):
     move = None # Null checking?
     snakeHead = snake['coords'][0]

@@ -9,7 +9,6 @@ ID = 'PLACEHOLDER'
 #   0 = finding food
 #   1 = circling food
 prevState = 0 
-
 # --------Grid data-------
 snakeHead = 0 # Head will be set as the length of the snake
 snakeBody = -1

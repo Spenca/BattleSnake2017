@@ -7,41 +7,41 @@ import random
 def newState(foodCount, prevState, snake, data):
     foods = data['food']
 	# Get our snake's head position
-	snakeHead = snake['coords'][0]
+    snakeHead = snake['coords'][0]
 	# Determine which food is the closest to use
-	closeFood = closestFood(foods, snakeHead)
+    closeFood = closestFood(foods, snakeHead)
 	# Determine the distance to the closest food
-	dist = distance(snakeHead, closeFood)
+    dist = distance(snakeHead, closeFood)
 	# Get our snakes health
-	health = snake["health_points"]
+    health = snake["health_points"]
 	# Get our snakes length
-	snakeLen = getSnakeLen(snake['coords'])
+    snakeLen = getSnakeLen(snake['coords'])
 	# Determine what distance away from the food we will circle at
 	#cirDist = getSqSideLen(snakeLen)/2
 	# Determine the threshold of when to move to food
-	threshold = dist + 5
+    threshold = dist + 5
 
 	# If previous state was circling food and health < threshold --> eat food	
 	# If previous state was circling food and health above threshold --> continue circling
 	# If previous state was finding food and health above threshold and position is 'one' away from food --> start circling
 	# If previous state was finding food and position is more than 'one' away from food --> continue finding food
 
-	if prevState == 0 and dist == 1 and health > threshold:
+    if prevState == 0 and dist == 1 and health > threshold:
 		#call to function defining square formation and deciding next move to enter circling state
 		sqCorners, move = getSqCorners(snake)
 		state = 1
-	elif prevState == 1 and health > threshold:
+    elif prevState == 1 and health > threshold:
 		#call to function deciding next move in circling state
 		move = getDefMove(snake, sqCorners)
 		state = 1
-	else: #prevState == 0:
+    else: #prevState == 0:
 		#call to function deciding next move in finding food state
 		#move = getDirection(snake) #TODO: replace w/ logic
 		move = getSeekMove(snake)
 		state = 0
 		#move = getOffMove(snakeHead, closeFood)
 	
-	return move, state
+    return move, state
 
 # Get the length of a snake
 def getSnakeLen(coords):

@@ -159,12 +159,9 @@ def desperation(snake, data, move):
 	for item in opts:
 		if checkCollision(snake, data, item) == True:
 			opts.remove(item)
-		else:
-			return item
-
-	#return 'up'
-
-
+	if len(opts) > 0:
+		return random.choice(opts)
+	return 'up'
 
 def checkCollision(snake, data, move):
 	# under construction

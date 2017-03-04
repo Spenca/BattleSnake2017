@@ -4,7 +4,8 @@ import random
 # Previous state codes:
 #	0 = finding food
 #	1 = circling food
-def newState(foodCount, prevState, snake, foods):
+def newState(foodCount, prevState, snake, data):
+    foods = data['food']
 	# Get our snake's head position
 	snakeHead = snake['coords'][0]
 	# Determine which food is the closest to use
@@ -18,7 +19,7 @@ def newState(foodCount, prevState, snake, foods):
 	# Determine what distance away from the food we will circle at
 	#cirDist = getSqSideLen(snakeLen)/2
 	# Determine the threshold of when to move to food
-	thresh = cirDist+10
+	threshold = dist + 5
 
 	# If previous state was circling food and health < threshold --> eat food	
 	# If previous state was circling food and health above threshold --> continue circling

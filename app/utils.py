@@ -156,7 +156,7 @@ def checkCollision(snake, data, move):
 
 	for s in data['snakes']: # other snakes
   		for c in s['coords']:
-		occupiedPositions.append(c)
+			occupiedPositions.append(c)
 
 	for s in range(data['width']): # north and south walls
 		occupiedPositions.append([s, -1])

@@ -70,15 +70,14 @@ def move():
 
     ourSnake, grid, foodCount = init(data)
 
-    #move = utils.newState(foodCount, ourSnake, data)
+    move = utils.newState(foodCount, ourSnake, data)
    
-    move = utils.getSeekMove(ourSnake, data) # TODO: Fix other states and cases
+    #move = utils.getSeekMove(ourSnake, data) # TODO: Fix other states and cases
     
     return {
         'move': move,
         'taunt': 'Snek-caw!'
     }
-
 
 # Expose WSGI app (so gunicorn can find it)
 application = bottle.default_app()

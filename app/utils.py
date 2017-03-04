@@ -1,10 +1,13 @@
 import random
 
+
+state = 0
 # Decide which state we want to be in for current move
 # Previous state codes:
 #	0 = finding food
 #	1 = circling food
-def newState(foodCount, prevState, snake, data):
+def newState(foodCount, snake, data):
+    global state
     foods = data['food']
 	# Get our snake's head position
     snakeHead = snake['coords'][0]
@@ -26,22 +29,25 @@ def newState(foodCount, prevState, snake, data):
 	# If previous state was finding food and health above threshold and position is 'one' away from food --> start circling
 	# If previous state was finding food and position is more than 'one' away from food --> continue finding food
 
-    if prevState == 0 and dist == 1 and health > threshold:
+    if state == 0 and dist == 1 and health > threshold:
 		#call to function defining square formation and deciding next move to enter circling state
 		sqCorners, move = getSqCorners(snake)
 		state = 1
-    elif prevState == 1 and health > threshold:
+    elif state == 1 and health > threshold:
 		#call to function deciding next move in circling state
 		move = getDefMove(snake, sqCorners)
 		state = 1
-    else: #prevState == 0:
+    else: #state == 0:
 		#call to function deciding next move in finding food state
 		#move = getDirection(snake) #TODO: replace w/ logic
-		move = getSeekMove(snake)
+		move = getSeekMove(snake, data)
 		state = 0
 		#move = getOffMove(snakeHead, closeFood)
-	
-    return move, state
+
+    if checkCollision(snake, data, move) == True:
+		move = desperation(snake, data, move)
+
+    return move
 
 # Get the length of a snake
 def getSnakeLen(coords):
@@ -105,9 +111,6 @@ def getSeekMove(snake, data):
 		move = 'up'
 	elif snakeHead[1] < closeFood[1]:
 		move = 'down'
-
-	if checkCollision(snake, data, move) == True:
-		move = desperation(snake, data, move)
 	
 	print "I am moving: " + move
 	return move
@@ -190,7 +193,7 @@ def desperation(snake, data, move):
 	remove_common_elements(opts, bad)
 	if len(opts) > 0:
 		return random.choice(opts)
-	return 'up'
+	return 'left'
 
 def remove_common_elements(a, b):
 	for e in a[:]:

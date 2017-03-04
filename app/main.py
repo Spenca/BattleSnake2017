@@ -8,7 +8,6 @@ ID = 'PLACEHOLDER'
 # Previous state codes:
 #   0 = finding food
 #   1 = circling food
-prevState = 0 
 # --------Grid data-------
 snakeHead = 0 # Head will be set as the length of the snake
 snakeBody = -1
@@ -71,9 +70,9 @@ def move():
 
     ourSnake, grid, foodCount = init(data)
 
-    move, prevState = utils.newState(foodCount, prevState, ourSnake, data)
+    #move = utils.newState(foodCount, ourSnake, data)
    
-    #move = utils.getSeekMove(ourSnake, data) # TODO: Fix other states and cases
+    move = utils.getSeekMove(ourSnake, data) # TODO: Fix other states and cases
     
     return {
         'move': move,

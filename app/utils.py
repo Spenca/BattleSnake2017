@@ -1,14 +1,11 @@
 import random
 
-state = 0
-sqCorners = [[0,0], [0,0], [0,0], [0,0]]
-
 # Decide which state we want to be in for current move
 # Previous state codes:
 #	0 = finding food
 #	1 = circling food
 def newState(foodCount, snake, data):
-    
+    global state
     foods = data['food']
 	# Get our snake's head position
     snakeHead = snake['coords'][0]
@@ -29,22 +26,22 @@ def newState(foodCount, snake, data):
 	# If previous state was circling food and health above threshold --> continue circling
 	# If previous state was finding food and health above threshold and position is 'one' away from food --> start circling
 	# If previous state was finding food and position is more than 'one' away from food --> continue finding food
-
+    print state
+    if 'state' not in globals():
+		state = 0
+    print state
     if state == 0 and dist == 1 and health > threshold:
 		#call to function defining square formation and deciding next move to enter circling state
-		global state
 		global sqCorners
 		print sqCorners
 		sqCorners, move = getSqCorners(snake, closeFood)
 		print sqCorners
 		state = 1
     elif state == 1 and health > threshold:
-		global state
 		#call to function deciding next move in circling state
 		move = getDefMove(snake, sqCorners)
 		state = 1
     else: #state == 0:
-		global state
 		#call to function deciding next move in finding food state
 		#move = getDirection(snake) #TODO: replace w/ logic
 		move = getSeekMove(snake, data)

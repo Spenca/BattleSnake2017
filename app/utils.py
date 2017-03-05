@@ -15,7 +15,7 @@ def newState(foodCount, snake, data):
 	# Get our snake's head position
     snakeHead = snake['coords'][0]
 	# Determine which food is the closest to use
-    closeFood = closesxtFood(foods, snakeHead)
+    closeFood = closestFood(foods, snakeHead)
 	# Determine the distance to the closest food
     dist = distance(snakeHead, closeFood)
 	# Get our snakes health

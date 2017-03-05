@@ -26,7 +26,6 @@ def newState(foodCount, snake, data):
 	# If previous state was circling food and health above threshold --> continue circling
 	# If previous state was finding food and health above threshold and position is 'one' away from food --> start circling
 	# If previous state was finding food and position is more than 'one' away from food --> continue finding food
-    print state
     if 'state' not in globals():
 		state = 0
     print state

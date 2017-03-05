@@ -213,8 +213,8 @@ def checkCollision(snake, data, move, **kwargs):
 	# return true or false
 
 	currentPos = snake['coords'][0]
-	if 'currentPos' in kwargs:
-		currentPos = kwargs['currentPos']
+	#if 'currentPos' in kwargs:
+		#currentPos = kwargs['currentPos']
 	
 	if move == 'up':
 		choice = [currentPos[0], currentPos[1] - 1]
@@ -239,8 +239,8 @@ def checkCollision(snake, data, move, **kwargs):
   		occupiedPositions.append([-1, s])
   		occupiedPositions.append([data['width'], s])
 
-  	if 'currentPos' not in kwargs:
-  		occupiedPositions.append(checkEnclosure(data, snake, currentPos, occupiedPositions))
+  	#if 'currentPos' not in kwargs:
+  		#occupiedPositions.append(checkEnclosure(data, snake, currentPos, occupiedPositions))
 
   	if choice in occupiedPositions:
   		return True

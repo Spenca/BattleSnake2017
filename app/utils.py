@@ -1,5 +1,4 @@
 import random
-import numpy as np
 
 # Decide which state we want to be in for current move
 # Previous state codes:

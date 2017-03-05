@@ -121,7 +121,10 @@ def getSeekMove(snake, data):
 
 # Get the side length of the min. incomplete square that can be formed by a snake of length n
 def getSqSideLen(n):
-	return 1 + ((n+4)/4)
+	len = 1 + ((n+4)/4)
+	if len < 3:
+		len = 3
+	return len
 
 # Get an array of length 4 of the coordinates that define the defensive square: [top-left, top-right, bottom-right, bottom-left]
 def getSqCorners(snake, closeFood):

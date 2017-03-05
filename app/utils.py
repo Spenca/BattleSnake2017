@@ -52,6 +52,7 @@ def newState(foodCount, snake, data):
 
     if checkCollision(snake, data, move) == True:
 		move = desperation(snake, data, move)
+		state = 0
 
     return move
 

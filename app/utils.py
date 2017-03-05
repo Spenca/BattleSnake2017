@@ -93,9 +93,8 @@ def getDirection(snake):
 		return 'left'
 	elif dy == 1:
 		return 'down'
-	elif dy == -1:
+	else:
 		return 'up'
-	return
 
 #TODO: Fix case where snake turns into istelf
 #TODO: Add transition to defense state     

@@ -9,8 +9,6 @@ sqCorners = [[0,0], [0,0], [0,0], [0,0]]
 #	1 = circling food
 def newState(foodCount, snake, data):
     global state
-    global sqCorners
-    print sqCorners
     foods = data['food']
 	# Get our snake's head position
     snakeHead = snake['coords'][0]
@@ -34,7 +32,10 @@ def newState(foodCount, snake, data):
 
     if state == 0 and dist == 1 and health > threshold:
 		#call to function defining square formation and deciding next move to enter circling state
+		global sqCorners
+		print sqCorners
 		sqCorners, move = getSqCorners(snake, closeFood)
+		print sqCorners
 		state = 1
     elif state == 1 and health > threshold:
 		#call to function deciding next move in circling state

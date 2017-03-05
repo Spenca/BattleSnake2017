@@ -218,11 +218,11 @@ def checkCollision(snake, data, move, **kwargs):
 	
 	if move == 'up':
 		choice = [currentPos[0], currentPos[1] - 1]
-	if move == 'down':
+	elif move == 'down':
 		choice = [currentPos[0], currentPos[1] + 1]
-	if move == 'right':
+	elif move == 'right':
 		choice = [currentPos[0] + 1, currentPos[1]]
-	if move == 'left':
+	else:
 		choice = [currentPos[0] - 1, currentPos[1]]
 
 	occupiedPositions = []

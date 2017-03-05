@@ -28,7 +28,7 @@ def newState(foodCount, snake, data):
 	# If previous state was finding food and position is more than 'one' away from food --> continue finding food
     if 'state' not in globals():
 		state = 0
-    print state
+    print 'state: ' + state
     if state == 0 and dist == 1 and health > threshold:
 		#call to function defining square formation and deciding next move to enter circling state
 		global sqCorners
@@ -38,6 +38,7 @@ def newState(foodCount, snake, data):
     elif state == 1 and health > threshold:
 		#call to function deciding next move in circling state
 		move = getDefMove(snake, sqCorners)
+		print sqCorners
 		state = 1
     else: #state == 0:
 		#call to function deciding next move in finding food state
@@ -113,8 +114,6 @@ def getSeekMove(snake, data):
 		move = 'up'
 	elif snakeHead[1] < closeFood[1]:
 		move = 'down'
-	
-	print "I am moving: " + move
 	return move
 
 # Get the side length of the min. incomplete square that can be formed by a snake of length n
@@ -184,9 +183,7 @@ def getOffMove(snakeHead, closeFood):
 # Return a collision free move
 def desperation(snake, data, move):
 	opts = ['up', 'down', 'right', 'left']
-	print "1: " + str(opts)
 	opts.remove(move)
-	print "2: " + str(opts)
 	bad = []
 	for item in opts:
 		if checkCollision(snake, data, item) == True:

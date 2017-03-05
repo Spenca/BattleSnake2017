@@ -36,12 +36,12 @@ def newState(foodCount, snake, data):
     if state == 0 and dist == 1 and health > threshold:
 		#call to function defining square formation and deciding next move to enter circling state
 		sqCorners, move = getSqCorners(snake, closeFood)
-		print "sqCorners: ", sqCorners
+		print "sqCorners in 1st branch: ", sqCorners
 		state = 1
     elif state == 1 and health > threshold:
 		#call to function deciding next move in circling state
 		move = getDefMove(snake, sqCorners)
-		print "sqCorners2: ", sqCorners
+		print "sqCorners in 2nd branch: ", sqCorners
 		state = 1
     else: #state == 0:
 		#call to function deciding next move in finding food state
@@ -166,8 +166,8 @@ def turnRight(direction):
 def getDefMove(snake, sqCorners):
 	snakeHead = snake['coords'][0]
 	direction = getDirection(snake)
-	print "sqCorners3: ", sqCorners
-	print "snakeHead: ",snakeHead
+	print "sqCorners in getDefMove: ", sqCorners
+	print "snakeHead: ", snakeHead
 	if snakeHead in sqCorners:
 		return turnRight(direction)
 	else:

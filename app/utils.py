@@ -1,4 +1,5 @@
 import random
+import numpy as np
 
 # Decide which state we want to be in for current move
 # Previous state codes:
@@ -118,6 +119,7 @@ def getSeekMove(snake, data):
 		move = 'up'
 	elif snakeHead[1] < closeFood[1]:
 		move = 'down'
+		
 	return move
 
 # Get the side length of the min. incomplete square that can be formed by a snake of length n
@@ -205,13 +207,14 @@ def remove_common_elements(a, b):
 		if e in b:
 			a.remove(e)
 
-def checkCollision(snake, data, move):
-	# under construction
+def checkCollision(snake, data, move, **kwargs):
 	# move = 'up' | 'left' | 'down' | 'right'
 	# move translated to coordinates = [0, -1] | [-1, 0] | [0, 1] | [1, 0]
 	# return true or false
 
 	currentPos = snake['coords'][0]
+	if 'currentPos' in kwargs:
+		currentPos = kwargs['currentPos']
 	
 	if move == 'up':
 		choice = [currentPos[0], currentPos[1] - 1]
@@ -221,7 +224,7 @@ def checkCollision(snake, data, move):
 		choice = [currentPos[0] + 1, currentPos[1]]
 	if move == 'left':
 		choice = [currentPos[0] - 1, currentPos[1]]
-	
+
 	occupiedPositions = []
 
 	for s in data['snakes']: # all snakes
@@ -236,7 +239,39 @@ def checkCollision(snake, data, move):
   		occupiedPositions.append([-1, s])
   		occupiedPositions.append([data['width'], s])
 
+  	if 'currentPos' not in kwargs:
+  		occupiedPositions.append(checkEnclosure(data, snake, currentPos, occupiedPositions))
+
   	if choice in occupiedPositions:
   		return True
   	else:
   		return False
+
+def checkEnclosure(data, snake, currentPos, occupiedPositions):
+	currentPos = snake['coords'][0]
+	possible = [[currentPos[0], currentPos[1] - 1],
+		[currentPos[0], currentPos[1] + 1],
+		[currentPos[0] - 1, currentPos[1]],
+		[currentPos[0] + 1, currentPos[1]]]
+	moves = ['up', 'down', 'left', 'right']
+
+	a = []
+
+	remove_common_elements(possible, occupiedPositions)
+	if len(possible) == 1:
+		return [occupiedPositions[0]]
+
+	for p in possible:
+		b = [p, 0]
+		for m in moves:
+			if checkCollision(snake, data, m, currentPos=p) == True:
+				b[1] = b[1] + 1
+		a.append(b)
+
+	coord = []
+	most = 0
+	for e in a:
+		if e[1] > most:
+			most = e[1]
+			coord = e[0]
+	return coord

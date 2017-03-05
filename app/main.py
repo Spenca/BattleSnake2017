@@ -2,6 +2,7 @@ import bottle
 import os
 import random
 import utils
+import numpy as np
 
 ID = 'PLACEHOLDER'
 #foodCount = 0 # The number of foods on the board
@@ -74,6 +75,7 @@ def move():
     ourSnake, grid, foodCount = init(data)
 
     move = utils.newState(foodCount, ourSnake, data)
+
    
     #move = utils.getSeekMove(ourSnake, data) # TODO: Fix other states and cases
     

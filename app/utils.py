@@ -52,9 +52,9 @@ def newState(foodCount, snake, data):
 		#move = getOffMove(snakeHead, closeFood)
 
     if checkCollision(snake, data, move) == True:
-    	print "checkCollision true"
-		move = desperation(snake, data, move)
-		state = 0
+        print 'checkCollision true'
+        move = desperation(snake, data, move)
+        state = 0
 
     return move
 

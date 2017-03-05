@@ -28,7 +28,7 @@ def newState(foodCount, snake, data):
 	# If previous state was finding food and position is more than 'one' away from food --> continue finding food
     if 'state' not in globals():
 		state = 0
-    print 'state: ' + state
+    print state
     if state == 0 and dist == 1 and health > threshold:
 		#call to function defining square formation and deciding next move to enter circling state
 		global sqCorners

@@ -4,6 +4,7 @@ import random
 # Previous state codes:
 #	0 = finding food
 #	1 = circling food
+state = 0
 def newState(foodCount, snake, data):
     global state
     foods = data['food']
@@ -26,8 +27,6 @@ def newState(foodCount, snake, data):
 	# If previous state was circling food and health above threshold --> continue circling
 	# If previous state was finding food and health above threshold and position is 'one' away from food --> start circling
 	# If previous state was finding food and position is more than 'one' away from food --> continue finding food
-    if 'state' not in globals():
-		state = 0
     print state
     if state == 0 and dist == 1 and health > threshold:
 		#call to function defining square formation and deciding next move to enter circling state

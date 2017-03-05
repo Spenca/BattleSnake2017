@@ -45,6 +45,9 @@ def static(path):
 
 @bottle.post('/start')
 def start():
+    utils.state = 0
+    utils.sqCorners = None
+
     data = bottle.request.json
     game_id = data['game_id']
     board_width = data['width']

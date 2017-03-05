@@ -2,7 +2,6 @@ import bottle
 import os
 import random
 import utils
-import numpy as np
 
 ID = 'PLACEHOLDER'
 #foodCount = 0 # The number of foods on the board

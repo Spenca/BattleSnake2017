@@ -157,7 +157,7 @@ def turnRight(direction):
 
 # Get the move required to keep the snake in a defensive square formation around a food item
 def getDefMove(snake, sqCorners):
-
+	global sqCorners
 	snakeHead = snake['coords'][0]
 	direction = getDirection(snake)
 

@@ -60,7 +60,7 @@ def start():
 
     return {
         'color': '#000000',
-        'taunt': '{} ({}x{})'.format(game_id, board_width, board_height),
+        'taunt': 'Carrion my wayward son',
         'head_url': head_url,
         'name': 'Vulture Snake',
         'head_type': 'smile',

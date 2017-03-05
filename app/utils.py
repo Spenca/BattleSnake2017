@@ -4,13 +4,18 @@ import random
 # Previous state codes:
 #	0 = finding food
 #	1 = circling food
+
+state = 0
+sqCorners = None
+
 def newState(foodCount, snake, data):
-    global state
+	global state
+	global sqCorners
     foods = data['food']
 	# Get our snake's head position
     snakeHead = snake['coords'][0]
 	# Determine which food is the closest to use
-    closeFood = closestFood(foods, snakeHead)
+    closeFood = closesxtFood(foods, snakeHead)
 	# Determine the distance to the closest food
     dist = distance(snakeHead, closeFood)
 	# Get our snakes health
@@ -26,13 +31,10 @@ def newState(foodCount, snake, data):
 	# If previous state was circling food and health above threshold --> continue circling
 	# If previous state was finding food and health above threshold and position is 'one' away from food --> start circling
 	# If previous state was finding food and position is more than 'one' away from food --> continue finding food
-    if 'state' not in globals():
-		state = 0
     print "state: ", state
     print "dist: ", dist
     if state == 0 and dist == 1 and health > threshold:
 		#call to function defining square formation and deciding next move to enter circling state
-		global sqCorners
 		sqCorners, move = getSqCorners(snake, closeFood)
 		print "sqCorners: ", sqCorners
 		state = 1
